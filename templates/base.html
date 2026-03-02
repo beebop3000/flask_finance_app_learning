@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Stock App{% endblock %}</title>
+    <style>
+        nav { background: #333; padding: 1rem; }
+        nav a { color: white; margin-right: 15px; text-decoration: none; font-weight: bold; }
+        nav a:hover { color: #ffca28; }
+        .container { padding: 20px; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('moving_average') }}">Moving Average</a>
+        <a href="{{ url_for('efficient_frontier') }}">Efficient Frontier</a>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+
+    {% block scripts %}{% endblock %}
+
+
+
+
+
+</body>
+</html>

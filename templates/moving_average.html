@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}2026 Stock Dashboard{% endblock %}
+
+
+{% block content %}
+    <h1>Real-Time Stock Visualizer</h1>
+
+    <form method="POST" id="filterForm">
+        <!-- Dropdown -->
+        <select name="ticker" onchange="this.form.submit()">
+            <option value="aapl_us_d" {% if ticker == 'aapl_us_d' %}selected{% endif %}>Apple</option>
+            <option value="avgo_us_d" {% if ticker == 'avgo_us_d' %}selected{% endif %}>Broadcom Inc</option>
+            <option value="gme_us_d" {% if ticker == 'gme_us_d' %}selected{% endif %}>GameStop (GME)</option>
+            <option value="jpm_us_d" {% if ticker == 'jpm_us_d' %}selected{% endif %}>JPMorgan Chase (JPM)</option>
+            <option value="ko_us_d" {% if ticker == 'ko_us_d' %}selected{% endif %}>Coca-Cola Co</option>
+            <option value="lmt_us_d" {% if ticker == 'lmt_us_d' %}selected{% endif %}>Lockheed Martin Corp</option>
+            <option value="mcd_us_d" {% if ticker == 'mcd_us_d' %}selected{% endif %}>McDonald's Corp</option>
+            <option value="meta_pl_d" {% if ticker == 'meta_pl_d' %}selected{% endif %}>Meta (META)</option>
+            <option value="nflx_us_d" {% if ticker == 'nflx_us_d' %}selected{% endif %}>Netflix Inc</option>
+            <option value="nvda_us_d" {% if ticker == 'nvda_us_d' %}selected{% endif %}>NVIDIA Corp</option>
+            <option value="orcl_us_d" {% if ticker == 'orcl_us_d' %}selected{% endif %}>Oracle Corp</option>
+            <option value="wmt_us_d" {% if ticker == 'wmt_us_d' %}selected{% endif %}>Walmart Inc</option>
+        </select>
+
+        <!-- Slider -->
+        <input type="range" name="shortRange" min="30" max="90" 
+        value="{{ short_day_range }}" 
+        onchange="this.form.submit()">
+        <span>Value: {{ short_day_range }}</span>
+
+        <input type="range" name="longRange" min="120" max="360" 
+        value="{{ long_day_range }}" 
+        onchange="this.form.submit()">
+        <span>Value: {{ long_day_range }}</span>
+    </form>
+
+    <div>
+    {{ plot | safe }}
+    </div>
+
+    <h1>All Trades:</h1>
+    {{ table_html|safe }}
+
+
+{% endblock %}
+
+
+{% block scripts %}
+    <!-- This only loads on the Moving Average page -->
+    <script src="https://cdn.plot.ly"></script>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Portfolio Optimization Results</h1>
+    
+    <!-- Render the Plotly chart here -->
+    <div class="chart-container">
+        {{ plot | safe }}
+    </div>
+{% endblock %}
+
+
+
+{% block scripts %}
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
